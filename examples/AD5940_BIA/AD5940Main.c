@@ -36,11 +36,11 @@ int32_t BIAShowResult(uint32_t *pData, uint32_t DataCount)
   fImpPol_Type *pImp = (fImpPol_Type*)pData;
   AppBIACtrl(BIACTRL_GETFREQ, &freq);
 
-  printf("Freq:%.2f ", freq);
+  //printf("Freq:%.2f ", freq);
   /*Process data*/
   for(int i=0;i<DataCount;i++)
   {
-    printf("RzMag: %f Ohm , RzPhase: %f \n",pImp[i].Magnitude,pImp[i].Phase*180/MATH_PI);
+    printf("Freq:%.2f, RzMag: %f Ohm , RzPhase: %f \n",freq,pImp[i].Magnitude,pImp[i].Phase*180/MATH_PI);
   }
   return 0;
 }
@@ -104,8 +104,8 @@ void AD5940BIAStructInit(void)
   pBIACfg->MaxSeqLen = 512; /** @todo add checker in function */
   
   pBIACfg->RcalVal = 10000.0;
-  pBIACfg->DftNum = DFTNUM_8192;
-  pBIACfg->NumOfData = -1;      /* Never stop until you stop it manually by AppBIACtrl() function */
+  pBIACfg->DftNum = DFTNUM_16384;
+  pBIACfg->NumOfData = 100;      /* Never stops until you stop it manually by AppBIACtrl() function with -1 */
   pBIACfg->BiaODR = 20;         /* ODR(Sample Rate) 20Hz */
   pBIACfg->FifoThresh = 4;      /* 4 */
   pBIACfg->ADCSinc3Osr = ADCSINC3OSR_2;
