@@ -45,16 +45,16 @@ AppBIACfg_Type AppBIACfg =
   .SinFreq = 50000.0, /* 50kHz */
 
   .ADCPgaGain = ADCPGA_1,
-  .ADCSinc3Osr = ADCSINC3OSR_2,
+  .ADCSinc3Osr = ADCSINC3OSR_4,
   .ADCSinc2Osr = ADCSINC2OSR_22,
 
-  .DftNum = DFTNUM_8192,
+  .DftNum = DFTNUM_16384,
   .DftSrc = DFTSRC_SINC3,
   .HanWinEn = bTRUE,
 
-  .SweepCfg.SweepEn = bFALSE,
-  .SweepCfg.SweepStart = 10000,
-  .SweepCfg.SweepStop = 150000.0,
+  .SweepCfg.SweepEn = bTRUE,
+  .SweepCfg.SweepStart = 100,
+  .SweepCfg.SweepStop = 100000.0,
   .SweepCfg.SweepPoints = 100,
   .SweepCfg.SweepLog = bTRUE,
   .SweepCfg.SweepIndex = 0,
