@@ -105,7 +105,7 @@ void AD5940BIAStructInit(void)
   
   pBIACfg->RcalVal = 10000.0;
   pBIACfg->DftNum = DFTNUM_16384;
-  pBIACfg->NumOfData = 100;      /* Never stops until you stop it manually by AppBIACtrl() function with -1 */
+  pBIACfg->NumOfData = -1;      /* Never stops until you stop it manually by AppBIACtrl() function with -1 */
   pBIACfg->BiaODR = 20;         /* ODR(Sample Rate) 20Hz */
   pBIACfg->FifoThresh = 4;      /* 4 */
   pBIACfg->ADCSinc3Osr = ADCSINC3OSR_2;
@@ -126,6 +126,7 @@ void AD5940_Main(void)
  
   while(1)
   {
+		printf("IntFlag =%d/n",AD5940_GetMCUIntFlag());
     /* Check if interrupt flag which will be set when interrupt occurred. */
     if(AD5940_GetMCUIntFlag())
     {

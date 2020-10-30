@@ -31,7 +31,7 @@ AppBIACfg_Type AppBIACfg =
   .WuptClkFreq = 32000.0,
   .AdcClkFreq = 16000000.0,
   .BiaODR = 20.0, /* 20.0 Hz*/
-  .NumOfData = 100,
+  .NumOfData = -1,
   .RcalVal = 10000.0, /* 10kOhm */
 
   .PwrMod = AFEPWR_LP,
