@@ -126,7 +126,7 @@ void AD5940_Main(void)
  
   while(1)
   {
-		printf("IntFlag =%d/n",AD5940_GetMCUIntFlag());
+		printf("IntFlag =%d\n",AD5940_GetMCUIntFlag());
     /* Check if interrupt flag which will be set when interrupt occurred. */
     if(AD5940_GetMCUIntFlag())
     {
