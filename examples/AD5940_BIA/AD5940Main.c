@@ -105,7 +105,7 @@ void AD5940BIAStructInit(void)
   
   pBIACfg->RcalVal = 10000.0;
   pBIACfg->DftNum = DFTNUM_16384;
-  pBIACfg->NumOfData = -1;      /* Never stops until you stop it manually by AppBIACtrl() function with -1 */
+  pBIACfg->NumOfData = 100;      /* Never stops until you stop it manually by AppBIACtrl() function with -1 */
   pBIACfg->BiaODR = 20;         /* ODR(Sample Rate) 20Hz */
   pBIACfg->FifoThresh = 4;      /* 4 */
   pBIACfg->ADCSinc3Osr = ADCSINC3OSR_2;
@@ -126,7 +126,7 @@ void AD5940_Main(void)
  
   while(1)
   {
-		printf("IntFlag =%d\n",AD5940_GetMCUIntFlag());
+		//printf("IntFlag =%d\n",AD5940_GetMCUIntFlag());
     /* Check if interrupt flag which will be set when interrupt occurred. */
     if(AD5940_GetMCUIntFlag())
     {
@@ -136,8 +136,13 @@ void AD5940_Main(void)
       AppBIAISR(AppBuff, &temp); /* Deal with it and provide a buffer to store data we got */
       BIAShowResult(AppBuff, temp); /* Show the results to UART */
 
-      if(IntCount == 240)
+      if(IntCount == NumOfData) //Pause after every 100 values need to sync with AppBIACfg.SweepPoints
       {
+			AppBIACtrl(BIACTRL_SHUTDOWN, 0);
+			AD5940_Delay10us(1000000); //5 minute pause for (10 seconds)
+			//AppBIAInit(0, 0);
+			//AppBIAInit(AppBuff, APPBUFF_SIZE);
+			AppBIACtrl(BIACTRL_START, 0);
         IntCount = 0;
         //AppBIACtrl(BIACTRL_SHUTDOWN, 0);
       }
