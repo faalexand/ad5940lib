@@ -136,7 +136,7 @@ void AD5940_Main(void)
       AppBIAISR(AppBuff, &temp); /* Deal with it and provide a buffer to store data we got */
       BIAShowResult(AppBuff, temp); /* Show the results to UART */
 
-      if(IntCount == NumOfData) //Pause after every 100 values need to sync with AppBIACfg.SweepPoints
+      if(IntCount == 100) //Pause after every 100 values need to sync with AppBIACfg.SweepPoints
       {
 			AppBIACtrl(BIACTRL_SHUTDOWN, 0);
 			AD5940_Delay10us(1000000); //5 minute pause for (10 seconds)
